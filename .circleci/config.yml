@@ -10,7 +10,7 @@ jobs: # a collection of steps
     steps:  
       - checkout    
       - run:
-          name: ziptheapplication
+          name: zip the application
           command: |
             zip -r lambda-webapp ./
             aws lambda update-function-code --function-name  SESLambda --zip-file fileb://lambda-webapp.zip --region ${AWSRegion}
@@ -19,7 +19,7 @@ workflows:
   version: 2.1
   build_deploy:
     jobs:
-      - zipandupload:
+      - zipandupload
       # - deploy_application:
       #   requires:
       #   - prepare
