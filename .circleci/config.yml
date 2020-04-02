@@ -2,7 +2,8 @@ version: 2.1 # use CircleCI 2.1
 orbs:
   aws-cli: circleci/aws-cli@0.1.13
 jobs: # a collection of steps
-    # zip application
+  # zip application
+  zipandupload:
     working_directory: ~/mern-starter # directory where steps will run
     machine:
       image: ubuntu-1604:201903-01
