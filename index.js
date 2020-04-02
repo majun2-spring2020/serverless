@@ -5,8 +5,8 @@ aws.config.update({
     endpoint: "https://dynamodb.us-east-1.amazonaws.com"
   });
 var docClient = new aws.DynamoDB.DocumentClient();
-// const SECONDS_IN_AN_HOUR = 60 * 60;
-const SECONDS_IN_AN_HOUR = 30;
+const SECONDS_IN_AN_HOUR = 60 * 60;
+// const SECONDS_IN_AN_HOUR = 30;
 exports.handler = (event, context, callback) => {
     var payload=JSON.parse(event.Records[0].Sns.Message)
     var email=payload.email
