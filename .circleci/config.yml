@@ -1,0 +1,29 @@
+version: 2.1 # use CircleCI 2.1
+orbs:
+  aws-cli: circleci/aws-cli@0.1.13
+jobs: # a collection of steps
+    # zip application
+    working_directory: ~/mern-starter # directory where steps will run
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:  
+      - checkout    
+      - run:
+          name: zip the application
+          command: |
+            zip -r lambda-webapp ./
+            aws lambda update-function-code --function-name  SESLambda --zip-file fileb://lambda-webapp.zip
+
+workflows:
+  version: 2.1
+  build_deploy:
+    jobs:
+      - zipandupload:
+      # - deploy_application:
+      #   requires:
+      #   - prepare
+      #   jobs:
+      #   - aws-code-deploy/deploy:
+      #       application-name: csye6225-webapp # The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
+      #       deployment-group: csye6225-webapp-deployment # The name of a new deployment group for the specified application.
+      #       bundle-bucket: codedeploy.meepo.me # The s3 bucket where an application revision will be stored.
